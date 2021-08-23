@@ -182,7 +182,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2020-04-07 21:55:14
+        <i class="fas fa-edit"></i>&nbsp;2020-08-23 00:00:00
     </span>
     
         <span class="article-categories article-meta-item">
@@ -190,7 +190,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/Hexo/">Hexo</a>&nbsp;
+                        <a href="/categories/opensource/">opensource</a>&nbsp;
                     </li>
                 
             </ul>
@@ -202,15 +202,15 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/docker/">docker</a>&nbsp;
+                        <a href="/tags/github/">github</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/github/">github</a>&nbsp;
+                        | <a href="/tags/cityflow/">cityflow</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/notes/">notes</a>&nbsp;
+                        | <a href="/tags/document/">document</a>&nbsp;
                     </li>
                 
             </ul>
@@ -220,7 +220,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>342 Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>851 Words</span>
         </span>
     
     
@@ -237,53 +237,52 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="Docker-安装"><a href="#Docker-安装" class="headerlink" title="Docker 安装"></a>Docker 安装</h1><h2 id="手动卸载旧版本"><a href="#手动卸载旧版本" class="headerlink" title="手动卸载旧版本"></a>手动卸载旧版本</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">sudo apt-get remove docker docker-engine docker.io containerd runc<br></code></pre></td></tr></table></figure>
+            <h1 id="CityFlow"><a href="#CityFlow" class="headerlink" title="CityFlow"></a>CityFlow</h1><h2 id="quick-start"><a href="#quick-start" class="headerlink" title="quick start"></a>quick start</h2><p>安装 <a class="link"   target="_blank" rel="noopener" href="https://cityflow.readthedocs.io/en/latest/install.html" >https://cityflow.readthedocs.io/en/latest/install.html<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="输入说明"><a href="#输入说明" class="headerlink" title="输入说明"></a>输入说明</h2><p>需要三个文件作为输入 roadnet.json config.json flow.json</p>
+<h3 id="roadnet-json"><a href="#roadnet-json" class="headerlink" title="roadnet.json"></a>roadnet.json</h3><p>具体格式：<a class="link"   target="_blank" rel="noopener" href="https://cityflow.readthedocs.io/en/latest/roadnet.html" >https://cityflow.readthedocs.io/en/latest/roadnet.html<i class="fas fa-external-link-alt"></i></a></p>
+<p>如果要实际地图，生成方法见之前的地图转换</p>
+<ol>
+<li>网站<a class="link"   target="_blank" rel="noopener" href="https://export.hotosm.org/en/v3/exports" >https://export.hotosm.org/en/v3/exports<i class="fas fa-external-link-alt"></i></a><br>原先的不太好用，直接用这个网站export，注册个账号然后按export tool<br>选择.pbf格式<br>只选择transportation，一路next<br>等它complete，点文件直接下载</li>
+<li>打开osmconvert.exe 在群文件里<br>按a往后一步步做，将pbf转换为osm文件</li>
+<li>去SUMO/bin下面点开start-command-line.bat<br>cd到之前osm所在文件夹 输入 netconvert –osm-files map.osm -o map.net.xml</li>
+<li>net.xml转cityflow文件<br>去tools/converter文件夹下<br>python converter.py –sumonet map.net.xml –cityflownet map.json</li>
+</ol>
+<p>如果要网格地图可以用tools/generator中的<strong>generate_grid_scenario.py</strong></p>
+<p>比如生成10*10的网格地图</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">python generate_grid_scenario.py 10 10<br></code></pre></td></tr></table></figure>
 
-<h2 id="一键安装"><a href="#一键安装" class="headerlink" title="一键安装"></a>一键安装</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun<br></code></pre></td></tr></table></figure>
-<span id="more"></span>
-<h2 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">sudo apt-get update<br>sudo apt-get install \<br>    apt-transport-https \<br>    ca-certificates \<br>    curl \<br>    gnupg-agent \<br>    software-properties-common<br>curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-key add -<br>sudo apt-key fingerprint 0EBFCD88<br>sudo add-apt-repository \<br>   <span class="hljs-string">&quot;deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/ \</span><br><span class="hljs-string">  <span class="hljs-subst">$(lsb_release -cs)</span> \</span><br><span class="hljs-string">  stable&quot;</span><br>sudo apt-get update<br>sudo apt-get install docker-ce docker-ce-cli containerd.io<br>sudo apt-get install docker-ce<br></code></pre></td></tr></table></figure>
+<p>他还会顺便生成一个很规整的flow文件，估计colight中很大一部分是用它跑的</p>
+<h3 id="flow-json"><a href="#flow-json" class="headerlink" title="flow.json"></a>flow.json</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com.cnpmjs.org/macro-city-flow/dev-city-flow.git<br><span class="hljs-built_in">cd</span> dev-city-flow/tools/geneator<br>python didi2flow.py --inFile gps_small --dir . --roadnetXML Chengdu.net.xml<br></code></pre></td></tr></table></figure>
 
-<h2 id="测试安装成功"><a href="#测试安装成功" class="headerlink" title="测试安装成功"></a>测试安装成功</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">sudo docker run hello-world<br></code></pre></td></tr></table></figure>
-<p>如果没有成功就再试一次，可能第一次不成功</p>
-<h1 id="更换源"><a href="#更换源" class="headerlink" title="更换源"></a>更换源</h1><h2 id="创建或修改-etc-docker-daemon-json-文件"><a href="#创建或修改-etc-docker-daemon-json-文件" class="headerlink" title="创建或修改 /etc/docker/daemon.json 文件"></a>创建或修改 /etc/docker/daemon.json 文件</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">vi /etc/docker/daemon.json<br></code></pre></td></tr></table></figure>
-
-<h2 id="在上述文件写入"><a href="#在上述文件写入" class="headerlink" title="在上述文件写入"></a>在上述文件写入</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">&#123;<br>	<span class="hljs-string">&quot;registry-mirrors&quot;</span>: [<span class="hljs-string">&quot;https://registry.docker-cn.com&quot;</span>]<br>&#125;<br></code></pre></td></tr></table></figure>
-
+<p>参数说明</p>
 <ul>
-<li>主义不要有多余空格，缩进用Tab</li>
-<li>以上时中国docker官方镜像，也可以试试别的源<ul>
-<li>网易<br><a class="link"   target="_blank" rel="noopener" href="http://hub-mirror.c.163.com/" >http://hub-mirror.c.163.com<i class="fas fa-external-link-alt"></i></a></li>
-<li>ustc<br><a class="link"   target="_blank" rel="noopener" href="https://docker.mirrors.ustc.edu.cn/" >https://docker.mirrors.ustc.edu.cn<i class="fas fa-external-link-alt"></i></a></li>
-<li>中国科技大学<br><a class="link"   target="_blank" rel="noopener" href="https://docker.mirrors.ustc.edu.cn/" >https://docker.mirrors.ustc.edu.cn<i class="fas fa-external-link-alt"></i></a></li>
+<li><p>–inFile od点对 包括司机编号 订单编号 时间戳 经纬度</p>
+<ul>
+<li><p>比如一个司机的某个订单 但其实只要od就行</p>
+</li>
+<li><p>```<br>8f20c9188561b796ef8e26196de30be4,39a096b71376b82f35732eff6d95779b,1477969147,104.07513,30.72724<br>8f20c9188561b796ef8e26196de30be4,39a096b71376b82f35732eff6d95779b,1477969150,104.07513,30.72702<br>8f20c9188561b796ef8e26196de30be4,39a096b71376b82f35732eff6d95779b,1477969154,104.07504,30.72672<br>8f20c9188561b796ef8e26196de30be4,39a096b71376b82f35732eff6d95779b,1477969156,104.07497,30.72630<br>8f20c9188561b796ef8e26196de30be4,39a096b71376b82f35732eff6d95779b,1477969159,104.07497,30.72582<br>8f20c9188561b796ef8e26196de30be4,39a096b71376b82f35732eff6d95779b,1477969162,104.07496,30.72544<br>8f20c9188561b796ef8e26196de30be4,39a096b71376b82f35732eff6d95779b,1477969168,104.07489,30.72487<br>8f20c9188561b796ef8e26196de30be4,39a096b71376b82f35732eff6d95779b,1477969171,104.07476,30.72456<br>8f20c9188561b796ef8e26196de30be4,39a096b71376b82f35732eff6d95779b,1477969174,104.07457,30.72434<br>8f20c9188561b796ef8e26196de30be4,39a096b71376b82f35732eff6d95779b,1477969177,104.07434,30.72406<br>8f20c9188561b796ef8e26196de30be4,39a096b71376b82f35732eff6d95779b,1477969180,104.07422,30.72379<br>8f20c9188561b796ef8e26196de30be4,39a096b71376b82f35732eff6d95779b,1477969183,104.07424,30.72351<br>8f20c9188561b796ef8e26196de30be4,39a096b71376b82f35732eff6d95779b,1477969186,104.07449,30.72315<br>8f20c9188561b796ef8e26196de30be4,39a096b71376b82f35732eff6d95779b,1477969189,104.07481,30.72300<br>8f20c9188561b796ef8e26196de30be4,39a096b71376b82f35732eff6d95779b,1477969193,104.07506,30.72298<br>8f20c9188561b796ef8e26196de30be4,39a096b71376b82f35732eff6d95779b,1477969195,104.07539,30.72301<br>8f20c9188561b796ef8e26196de30be4,39a096b71376b82f35732eff6d95779b,1477969198,104.07576,30.72308</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk"><br>  - 参照gps_small<br><br>- --dir 运行文件夹 一般就打 .<br><br>- --roadnetXML sumo的地图获得方法按上面的地图转换方法做到第三部<br><br>关于flow文件说明<br><br>https:<span class="hljs-regexp">//</span>cityflow.readthedocs.io<span class="hljs-regexp">/en/</span>latest/flow.html<br><br>所以didi2flow脚本里面的starttime和endtime其实是不对的 应该是许多starttime和endtime相同的flow 这里需要改动<br><br>反正时间戳有问题自己处理一下<br><br><br><br><span class="hljs-comment">### config.json</span><br><br>参照此连接中的sample config file https:<span class="hljs-regexp">//</span>cityflow.readthedocs.io<span class="hljs-regexp">/en/</span>latest/start.html<br><br>```json<br>&#123;<br>	<span class="hljs-string">&quot;interval&quot;</span>: <span class="hljs-number">1.0</span>,<br>	<span class="hljs-string">&quot;seed&quot;</span>: <span class="hljs-number">0</span>,<br>	<span class="hljs-string">&quot;dir&quot;</span>: <span class="hljs-string">&quot;examples/&quot;</span>,<br>	<span class="hljs-string">&quot;roadnetFile&quot;</span>: <span class="hljs-string">&quot;roadnet.json&quot;</span>, <br>	<span class="hljs-string">&quot;flowFile&quot;</span>: <span class="hljs-string">&quot;flow.json&quot;</span>, <br>	<span class="hljs-string">&quot;rlTrafficLight&quot;</span>: false,<br>	<span class="hljs-string">&quot;laneChange&quot;</span>: false,<br>	<span class="hljs-string">&quot;saveReplay&quot;</span>: true,<br>	<span class="hljs-string">&quot;roadnetLogFile&quot;</span>: <span class="hljs-string">&quot;replay_roadnet.json&quot;</span>, <br>	<span class="hljs-string">&quot;replayLogFile&quot;</span>: <span class="hljs-string">&quot;replay.txt&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
-<h2 id="刷新"><a href="#刷新" class="headerlink" title="刷新"></a>刷新</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">systemctl daemon-reload<br>systemctl restart docker.service<br></code></pre></td></tr></table></figure>
+<p>说几个重要的</p>
+<p>interval以秒为单位 一个step跑一个interval</p>
+<p>dir是py文件运行文件夹与roadnet和flow文件所在文件夹的相对路径 如果搞不来就写绝对路径</p>
+<p>roadnetfile和flowfile是上面两个文件的名字</p>
+<p>rltrafficlight在跑colight时一定要开着</p>
+<p>savereplay就是要不要存replay 一般true 跑colight这种模型时可以false</p>
+<p>最后两个logfile就是存savereplay的文件名字 两个文件一个存路网一个存车流回放</p>
+<h2 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h2><p>一般准备一个文件夹存放以上三个文件，再在外层运行py文件</p>
+<p>比如</p>
+<p><img src="https://gitee.com/zhuhaojia2001/opensourcemap_imgs/raw/master/img/9Z%_DR3%60OB4~QEUL[9W208B.png" alt="img"></p>
+<p>6_6中存放上述三个文件</p>
+<p>6_6.py</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cityflow<br><span class="hljs-keyword">from</span> tqdm <span class="hljs-keyword">import</span> tqdm<br>eng = cityflow.Engine(<span class="hljs-string">&quot;./6_6/config.json&quot;</span>,<span class="hljs-number">10</span>) <span class="hljs-comment"># 可以自由控制后面这个线程数</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> tqdm(<span class="hljs-built_in">range</span>(<span class="hljs-number">3600</span>)): <span class="hljs-comment"># 跑几步就运行几次next_step</span><br>    eng.next_step()<br></code></pre></td></tr></table></figure>
 
 
 
-<h1 id="Docker使用"><a href="#Docker使用" class="headerlink" title="Docker使用"></a>Docker使用</h1><h2 id="镜像列表"><a href="#镜像列表" class="headerlink" title="镜像列表"></a>镜像列表</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">docker images<br></code></pre></td></tr></table></figure>
-
-<h2 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">docker pull ubuntu<br></code></pre></td></tr></table></figure>
-
-<h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">docker run -it ubuntu /bin/bash<br></code></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>-i</strong>: 交互式操作。</li>
-<li><strong>-t</strong>: 终端。</li>
-</ul>
-<h2 id="容器列表"><a href="#容器列表" class="headerlink" title="容器列表"></a>容器列表</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">docker ps -a<br></code></pre></td></tr></table></figure>
-
-<h2 id="按Id启动容器"><a href="#按Id启动容器" class="headerlink" title="按Id启动容器"></a>按Id启动容器</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">docker start b750bbbcfd88<br></code></pre></td></tr></table></figure>
-
-<h2 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">docker <span class="hljs-built_in">exec</span> 1e560fca3906<br></code></pre></td></tr></table></figure>
-
-<ul>
-<li>也可以使用attach但是退出会使容器停止</li>
-</ul>
-<h2 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">docker rm -f 1e560fca3906<br></code></pre></td></tr></table></figure>
-
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.runoob.com/docker/docker-container-usage.html" >https://www.runoob.com/docker/docker-container-usage.html<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="可视化说明"><a href="#可视化说明" class="headerlink" title="可视化说明"></a>可视化说明</h2><p>如果config.json中savereplay开着，以上跑完可以生成两个replay文件roadnetLogFile和replayLogFile</p>
+<p>打开frontend中的index.html，roadnet file中放入roadnetlogfile，replay file中放入replaylogfile，点start</p>
 
         </div>
 
@@ -295,7 +294,7 @@
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2020/09/16/trytheme1/"
+                           href="/2020/09/16/%E7%AE%97%E6%B3%95%E6%95%88%E7%8E%87%E5%BA%A6%E9%87%8F/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
@@ -307,6 +306,21 @@
                         </a>
                     </div>
                 
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2020/04/07/docker/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Docker Installation and Usage</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
                 
             </div>
         
@@ -423,7 +437,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker-%E5%AE%89%E8%A3%85"><span class="nav-text">Docker 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E5%8D%B8%E8%BD%BD%E6%97%A7%E7%89%88%E6%9C%AC"><span class="nav-text">手动卸载旧版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85"><span class="nav-text">一键安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85"><span class="nav-text">手动安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F"><span class="nav-text">测试安装成功</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2%E6%BA%90"><span class="nav-text">更换源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%88%96%E4%BF%AE%E6%94%B9-etc-docker-daemon-json-%E6%96%87%E4%BB%B6"><span class="nav-text">创建或修改 &#x2F;etc&#x2F;docker&#x2F;daemon.json 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E4%B8%8A%E8%BF%B0%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5"><span class="nav-text">在上述文件写入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%B7%E6%96%B0"><span class="nav-text">刷新</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker%E4%BD%BF%E7%94%A8"><span class="nav-text">Docker使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E5%88%97%E8%A1%A8"><span class="nav-text">镜像列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E9%95%9C%E5%83%8F"><span class="nav-text">获取镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8"><span class="nav-text">启动容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E5%88%97%E8%A1%A8"><span class="nav-text">容器列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%89Id%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8"><span class="nav-text">按Id启动容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8"><span class="nav-text">进入容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%AE%B9%E5%99%A8"><span class="nav-text">删除容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">参考</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CityFlow"><span class="nav-text">CityFlow</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#quick-start"><span class="nav-text">quick start</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E8%AF%B4%E6%98%8E"><span class="nav-text">输入说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#roadnet-json"><span class="nav-text">roadnet.json</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flow-json"><span class="nav-text">flow.json</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="nav-text">使用说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96%E8%AF%B4%E6%98%8E"><span class="nav-text">可视化说明</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>

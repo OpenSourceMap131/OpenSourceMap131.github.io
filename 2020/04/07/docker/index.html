@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="16131zzzzzzzz">
+    
+    <title>
+        
+            Docker Installation and Usage |
+        
+        OpenSourceMap
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://gitee.com/zhuhaojia2001/opensourcemap_imgs/raw/master/img/20210801152659.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#9933CC","avatar":"https://gitee.com/zhuhaojia2001/opensourcemap_imgs/raw/master/img/20210801152153.png","favicon":"https://gitee.com/zhuhaojia2001/opensourcemap_imgs/raw/master/img/20210801152659.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Map For Opensource Projects"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                OpenSourceMap
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               target="_blank" rel="noopener" href="https://space.bilibili.com/195560128"
+                            >
+                                BILIBILI
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       target="_blank" rel="noopener" href="https://space.bilibili.com/195560128">BILIBILI</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Docker Installation and Usage</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="https://gitee.com/zhuhaojia2001/opensourcemap_imgs/raw/master/img/20210801152153.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">16131zzzzzzzz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2020-04-07 21:55:14
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Hexo/">Hexo</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/docker/">docker</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/github/">github</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/notes/">notes</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>342 Words</span>
+        </span>
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="Docker-安装"><a href="#Docker-安装" class="headerlink" title="Docker 安装"></a>Docker 安装</h1><h2 id="手动卸载旧版本"><a href="#手动卸载旧版本" class="headerlink" title="手动卸载旧版本"></a>手动卸载旧版本</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">sudo apt-get remove docker docker-engine docker.io containerd runc<br></code></pre></td></tr></table></figure>
+
+<h2 id="一键安装"><a href="#一键安装" class="headerlink" title="一键安装"></a>一键安装</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun<br></code></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">sudo apt-get update<br>sudo apt-get install \<br>    apt-transport-https \<br>    ca-certificates \<br>    curl \<br>    gnupg-agent \<br>    software-properties-common<br>curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-key add -<br>sudo apt-key fingerprint 0EBFCD88<br>sudo add-apt-repository \<br>   <span class="hljs-string">&quot;deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/ \</span><br><span class="hljs-string">  <span class="hljs-subst">$(lsb_release -cs)</span> \</span><br><span class="hljs-string">  stable&quot;</span><br>sudo apt-get update<br>sudo apt-get install docker-ce docker-ce-cli containerd.io<br>sudo apt-get install docker-ce<br></code></pre></td></tr></table></figure>
+
+<h2 id="测试安装成功"><a href="#测试安装成功" class="headerlink" title="测试安装成功"></a>测试安装成功</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">sudo docker run hello-world<br></code></pre></td></tr></table></figure>
+<p>如果没有成功就再试一次，可能第一次不成功</p>
+<h1 id="更换源"><a href="#更换源" class="headerlink" title="更换源"></a>更换源</h1><h2 id="创建或修改-etc-docker-daemon-json-文件"><a href="#创建或修改-etc-docker-daemon-json-文件" class="headerlink" title="创建或修改 /etc/docker/daemon.json 文件"></a>创建或修改 /etc/docker/daemon.json 文件</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">vi /etc/docker/daemon.json<br></code></pre></td></tr></table></figure>
+
+<h2 id="在上述文件写入"><a href="#在上述文件写入" class="headerlink" title="在上述文件写入"></a>在上述文件写入</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">&#123;<br>	<span class="hljs-string">&quot;registry-mirrors&quot;</span>: [<span class="hljs-string">&quot;https://registry.docker-cn.com&quot;</span>]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>主义不要有多余空格，缩进用Tab</li>
+<li>以上时中国docker官方镜像，也可以试试别的源<ul>
+<li>网易<br><a class="link"   target="_blank" rel="noopener" href="http://hub-mirror.c.163.com/" >http://hub-mirror.c.163.com<i class="fas fa-external-link-alt"></i></a></li>
+<li>ustc<br><a class="link"   target="_blank" rel="noopener" href="https://docker.mirrors.ustc.edu.cn/" >https://docker.mirrors.ustc.edu.cn<i class="fas fa-external-link-alt"></i></a></li>
+<li>中国科技大学<br><a class="link"   target="_blank" rel="noopener" href="https://docker.mirrors.ustc.edu.cn/" >https://docker.mirrors.ustc.edu.cn<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+</li>
+</ul>
+<h2 id="刷新"><a href="#刷新" class="headerlink" title="刷新"></a>刷新</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">systemctl daemon-reload<br>systemctl restart docker.service<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="Docker使用"><a href="#Docker使用" class="headerlink" title="Docker使用"></a>Docker使用</h1><h2 id="镜像列表"><a href="#镜像列表" class="headerlink" title="镜像列表"></a>镜像列表</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">docker images<br></code></pre></td></tr></table></figure>
+
+<h2 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">docker pull ubuntu<br></code></pre></td></tr></table></figure>
+
+<h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">docker run -it ubuntu /bin/bash<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>-i</strong>: 交互式操作。</li>
+<li><strong>-t</strong>: 终端。</li>
+</ul>
+<h2 id="容器列表"><a href="#容器列表" class="headerlink" title="容器列表"></a>容器列表</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">docker ps -a<br></code></pre></td></tr></table></figure>
+
+<h2 id="按Id启动容器"><a href="#按Id启动容器" class="headerlink" title="按Id启动容器"></a>按Id启动容器</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">docker start b750bbbcfd88<br></code></pre></td></tr></table></figure>
+
+<h2 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">docker <span class="hljs-built_in">exec</span> 1e560fca3906<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>也可以使用attach但是退出会使容器停止</li>
+</ul>
+<h2 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">docker rm -f 1e560fca3906<br></code></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.runoob.com/docker/docker-container-usage.html" >https://www.runoob.com/docker/docker-container-usage.html<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/08/23/cityflow/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Docker Installation and Usage</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">16131zzzzzzzz</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker-%E5%AE%89%E8%A3%85"><span class="nav-text">Docker 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E5%8D%B8%E8%BD%BD%E6%97%A7%E7%89%88%E6%9C%AC"><span class="nav-text">手动卸载旧版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85"><span class="nav-text">一键安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85"><span class="nav-text">手动安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F"><span class="nav-text">测试安装成功</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2%E6%BA%90"><span class="nav-text">更换源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%88%96%E4%BF%AE%E6%94%B9-etc-docker-daemon-json-%E6%96%87%E4%BB%B6"><span class="nav-text">创建或修改 &#x2F;etc&#x2F;docker&#x2F;daemon.json 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E4%B8%8A%E8%BF%B0%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5"><span class="nav-text">在上述文件写入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%B7%E6%96%B0"><span class="nav-text">刷新</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker%E4%BD%BF%E7%94%A8"><span class="nav-text">Docker使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E5%88%97%E8%A1%A8"><span class="nav-text">镜像列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E9%95%9C%E5%83%8F"><span class="nav-text">获取镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8"><span class="nav-text">启动容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E5%88%97%E8%A1%A8"><span class="nav-text">容器列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%89Id%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8"><span class="nav-text">按Id启动容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8"><span class="nav-text">进入容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%AE%B9%E5%99%A8"><span class="nav-text">删除容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">参考</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
