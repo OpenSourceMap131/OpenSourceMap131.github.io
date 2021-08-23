@@ -274,7 +274,7 @@
 <p>最后两个logfile就是存savereplay的文件名字 两个文件一个存路网一个存车流回放</p>
 <h2 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h2><p>一般准备一个文件夹存放以上三个文件，再在外层运行py文件</p>
 <p>比如</p>
-<p><img src="https://gitee.com/zhuhaojia2001/opensourcemap_imgs/raw/master/img/9Z%_DR3%60OB4~QEUL[9W208B.png" alt="img"></p>
+<p><img src="https://gitee.com/zhuhaojia2001/opensourcemap_imgs/raw/master/img/image-20210823221751971.png" alt="image-20210823221751971"></p>
 <p>6_6中存放上述三个文件</p>
 <p>6_6.py</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cityflow<br><span class="hljs-keyword">from</span> tqdm <span class="hljs-keyword">import</span> tqdm<br>eng = cityflow.Engine(<span class="hljs-string">&quot;./6_6/config.json&quot;</span>,<span class="hljs-number">10</span>) <span class="hljs-comment"># 可以自由控制后面这个线程数</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> tqdm(<span class="hljs-built_in">range</span>(<span class="hljs-number">3600</span>)): <span class="hljs-comment"># 跑几步就运行几次next_step</span><br>    eng.next_step()<br></code></pre></td></tr></table></figure>
